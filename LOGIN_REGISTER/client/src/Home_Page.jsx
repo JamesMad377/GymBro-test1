@@ -36,10 +36,10 @@ function Home_Page() {
                             </a>
                         </li>
                         <li>
-                            <a href="../customers/customers-page.html">
+                            <Link to={'/Customers_Page'}>
                                 <img src="customers.png" alt="Customers" className="HomePage_NavigationIcon" />
                                 Customers
-                            </a>
+                            </Link>
                         </li>
                         <li>
                             <a href="#">
