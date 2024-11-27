@@ -1,0 +1,172 @@
+/* Resetting default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f9;
+    height: 100vh;
+    margin: 0;
+    position: sticky;
+}
+
+/* Container holding both sections */
+.LS_Container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    font-family: sans-serif;
+}
+
+/* Left Side - Login Form */
+.Login_Form {
+    width: 50%;
+    padding: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f9;
+    margin-top: -70px;
+}
+
+.Login_Form .LS_Logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: -60px;
+    margin-left: -80px;
+}
+
+.Login_Form .LS_Logo img {
+    width: 60%;
+}
+
+.Login_Form h1 {
+    font-size: 25px;
+    margin-bottom: 30px;
+}
+
+.Login_Form h2 {
+    font-size: 25px;
+    margin-bottom: 5px;
+}
+
+.Login_Form h5 {
+    margin-bottom: 13px;
+    font-size: smaller;
+    color: rgba(128, 128, 128, 0.534);
+    font-weight: normal;
+}
+.Login_Form input {
+    width: 80%;
+    padding: 13px;
+    margin-bottom: 10px;
+    border: 1.5px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    margin-left: 50px;
+    background-color: #f0f0f381;
+    font-size: 12px;
+
+}
+
+.Login_Form input:hover {
+    background-color: #ffffff;
+}
+
+.Login_Form button {
+    width: 80%;
+    padding: 8px;
+    background: linear-gradient(90deg, #3C3181 0%, #321F59 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    margin-left: 50px;
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+
+.Login_Form button:hover {
+    background-color: #4917ad;
+}
+
+.Login_Form p {
+    text-align: left;
+    margin-top: 10px;
+    color:rgba(128, 128, 128, 0.534);
+    font-size: x-small;
+}
+
+.Login_Form a {
+    color: #3e1a85;
+    text-decoration: none;
+}
+
+
+/* right side */
+.Welcome_Section {
+    width: 50%;
+    height: 100vh; 
+    position: relative;
+    overflow: hidden;
+    margin: auto;
+}
+
+.LS_Background {
+    position: absolute;
+    top: 0;
+    left: -50vw;
+    width: 150vw; 
+    height: 100%;
+    object-fit: cover; 
+    z-index: 1;
+}
+
+.Welcome_Message {
+    position: relative;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2; 
+    animation: fadeIn 1.5s ease-in-out forwards;
+}
+
+.Welcome_Message h3 {
+    font-size: 30px;
+    margin-bottom: -140px;
+}
+
+.Welcome_Message p {
+    font-size: 15px;
+    margin-top: -140px;
+}
+
+.Welcome_Message img {
+    max-width: 70%;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
