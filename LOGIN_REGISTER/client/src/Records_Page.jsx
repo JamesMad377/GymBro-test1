@@ -16,11 +16,11 @@ function Records_Page(){
                 {/* sidebar */}
                 <nav className="SideBar">
                     <ul className="navlinks">
-                        <li>
-                            <a href="urgym.html">
-                                <img src="urgym.png" alt="Your Gyms" className="nav-icon" />
+                    <li>
+                            <Link to ="/Home_Page">
+                                <img src="urgym.png" alt="Your Gyms" className="HomePage_NavigationIcon" />
                                 Your Gyms
-                            </a>
+                            </Link>
                         </li>
                         <li>
                             <a href="../bookmarks/bookmarks.html">
@@ -35,17 +35,18 @@ function Records_Page(){
                             </a>
                         </li>
                         <li>
-                            <a href="../customers/customers-page.html">
-                                <img src="customers.png" alt="Customers" className="nav-icon" />
+                            <Link to={'/Customers_Page'}>
+                                <img src="customers.png" alt="Customers" className="HomePage_NavigationIcon" />
                                 Customers
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a href="#">
-                                <img src="logout.png" alt="Logout" className="nav-icon" />
-                                Logout
-                            </a>
+                             <Link to="/Login_Page">
+                             <img src="logout.png" alt="Logout" className="nav-icon" />
+                                    Logout
+                            </Link>
                         </li>
+
                     </ul>
 
                     <div className="userinfo">
@@ -127,7 +128,6 @@ function Records_Page(){
                     {/* calendar */}
                     <div className="calendar-panel">
                         <div className="calendar-header">
-                            <img src="mouse-icon.png" alt="mouse-icon" />
                             <h5>SELECT DATE</h5>
                         </div>
                         <div className="calendar">
@@ -160,7 +160,6 @@ function Records_Page(){
                     {/* create record form */}
                     <form className="record-form">
                         <div className="add-record-header">
-                            <img src="add-record-icon.png" alt="add-record-icon" />
                             <h5>CREATE RECORD</h5>
                         </div>
                         <input type="text" id="full-name" placeholder="Enter Full Name" />

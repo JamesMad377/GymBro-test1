@@ -1,30 +1,52 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { db, auth } from './firebase'; // Import Firebase services
+import { collection, getDocs } from 'firebase/firestore'; // Firestore methods
 import '../src/Home_Page.css';
-import AddGym_Page from "./AddGym_Page";
-import Records_Page from "./Records_Page";
+
 function Home_Page() {
-    const navigate = useNavigate()
+    const [gyms, setGyms] = useState([]); // State to hold gym data
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchGyms = async () => {
+            const user = auth.currentUser; // Get current logged-in user
+            if (user) {
+                try {
+                    // Get gyms from Firestore under the current user's UID
+                    const gymRef = collection(db, 'users', user.uid, 'gyms');
+                    const gymSnapshot = await getDocs(gymRef);
+                    const gymList = gymSnapshot.docs.map(doc => doc.data());
+                    setGyms(gymList); // Set gyms to state
+                } catch (error) {
+                    console.error("Error fetching gyms: ", error);
+                }
+            }
+        };
+
+        fetchGyms(); // Call function to fetch gyms
+    }, []); // Empty dependency array to fetch gyms once on page load
+
     return (
         <div className="HomePage_Container">
             {/* logo */}
             <div className="HomePage_Logo">
                 <img src="violet_logo.png" alt="GymBro_logo" />
             </div>
-            
+
             {/* main layout */}
             <div className="HomePage_Layout">
                 {/* sidebar */}
-                <nav className="HomePage_SideBar">         
+                <nav className="HomePage_SideBar">
                     <ul className="HomePage_NavigationLinks">
                         <li>
-                            <Link to ="/Home_Page">
+                            <Link to="/Home_Page">
                                 <img src="urgym.png" alt="Your Gyms" className="HomePage_NavigationIcon" />
                                 Your Gyms
                             </Link>
                         </li>
                         <li>
-                            <a href="../bookmarks/bookmarks.html">
+                            <a href="/Bookmarks.html">
                                 <img src="bookmark.png" alt="Bookmarks" className="HomePage_NavigationIcon" />
                                 Bookmarks
                             </a>
@@ -42,12 +64,12 @@ function Home_Page() {
                             </Link>
                         </li>
                         <li>
-                            <a href="#">
+                             <Link to="/Login_Page">
                                 <img src="logout.png" alt="Logout" className="HomePage_NavigationIcon" />
                                 Logout
-                            </a>
+                            </Link>
                         </li>
-                    </ul>            
+                    </ul>
 
                     <div className="HomePage_UserInfo">
                         <a href="profile.html" className="HomePage_UserAccount">
@@ -65,116 +87,29 @@ function Home_Page() {
                         <div className="HomePage_SearchBar">
                             <input type="text" placeholder="Search here" />
                             <button className="HomePage_AddGymButton" id="addGymBtn" onClick={() => navigate('/AddGym_Page')}>
-                                <img src="AddIcon.png" alt="HomePage_AddIcon" /> 
+                                <img src="AddIcon.png" alt="HomePage_AddIcon" />
                                 Add Gym
                             </button>
                         </div>
                     </div>
-                    
-                    {/* example gyms and branches */}
+
+                    {/* Display gyms or message if none are added */}
                     <div className="HomePage_GymAndBranches">
-                        {/* example gyms */}
-                        <div className="HomePage_GymBox">
-                            {/* top part of the gym */}
-                            <div className="HomePage_GymsTopPart">
-                                <span className="HomePage_GymName">Anytime Fitness</span>
-                                <button className="HomePage_AddBranchButton"> 
-                                    <img src="plusIcon-violet.png" alt="add-branch-icon" className="HomePage_AddIcon" /> 
-                                    Add Branch
-                                </button>
-                                <a href="#">
-                                    <img src="editIcon.png" alt="HomePage_EditIcon" className="HomePage_EditIcon" />
-                                </a>
-                            </div>
-                            
-                             {/* example branches */}
-                            <div className="HomePage_BranchList">
-                                <div className="HomePage_BranchItem">
-                                    <div className="HomePage_GymImage">
-                                        <img src="ayala_mall.png" alt="Gym Image" />
-                                    </div>
-                                    <div className="HomePage_BranchDetails">
-                                        <a href="records.html">
-                                            <span className="HomePage_BranchLocation">Ayala Malls, Legazpi</span>
-                                        </a>
-                                        <span className="HomePage_BranchName">Anytime Fitness</span>
-                                    </div>
-                                    <div className="HomePage_BranchActions">
-                                        <div className="HomePage_TopActions">
-                                            <img src="insight-violet.png" alt="insight-icon" className="HomePage_ActionIcon" />
-                                            <img src="bookmark-violet.png" alt="bookmark-icon" className="HomePage_ActionIcon" />
-                                        </div>
-                                        <Link to="/Records_Page">
-                                            <button className="HomePage_ViewLogs">
-                                                View Logs
-                                                <img src="arrow-right.png" alt="HomePage_ViewLogs" />
-                                            </button>
-                                        </Link>
-                                    </div>
-                                </div>
-                                {/* add example branches here */}
-                                <div className="HomePage_BranchItem">
-                                    <div className="HomePage_GymImage">
-                                        <img src="diversion.png" alt="Gym Image" />
-                                    </div>
-                                    <div className="HomePage_BranchDetails">
-                                        <span className="HomePage_BranchLocation">Diversion M Plaza, Naga</span>
-                                        <span className="HomePage_BranchName">Anytime Fitness</span>
-                                    </div>
-                                    <div className="HomePage_BranchActions">
-                                        <div className="HomePage_TopActions">
-                                            <img src="insight-violet.png" alt="insight-icon" className="HomePage_ActionIcon" />
-                                            <img src="bookmark-violet-filled.png" alt="bookmark-icon" className="HomePage_ActionIcon" />
-                                        </div>
-                                        <button className="HomePage_ViewLogs">
-                                            View Logs
-                                            <img src="arrow-right.png" alt="HomePage_ViewLogs" />
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>                                               
-                        </div>
-                        
-                        {/* add example gym here */}
-                        <div className="HomePage_GymBox">
-                            {/* top part of the gym */}
-                            <div className="HomePage_GymsTopPart">
-                                <span className="HomePage_GymName">A-Factor</span>
-                                <button className="HomePage_AddBranchButton"> 
-                                    <img src="plusIcon-violet.png" alt="add-branch-icon" className="HomePage_AddIcon" /> 
-                                    Add Branch
-                                </button>
-                                <a href="#">
-                                    <img src="editIcon.png" alt="HomePage_EditIcon" className="HomePage_EditIcon" />
-                                </a>
-                            </div>
-                            
-                             {/* example branches */}
-                            <div className="branch-list">
-                                <div className="HomePage_BranchItem">
-                                    <div className="HomePage_GymImage">
-                                        <img src="jacob.png" alt="Gym Image" />
-                                    </div>
-                                    <div className="HomePage_BranchDetails">
-                                        <span className="HomePage_BranchLocation">Jacob, Naga</span>
-                                        <span className="HomePage_BranchName">A-Factor</span>
-                                    </div>
-                                    <div className="HomePage_BranchActions">
-                                        <div className="HomePage_TopActions">
-                                            <img src="insight-violet.png" alt="insight-icon" className="HomePage_ActionIcon" />
-                                            <img src="bookmark-violet.png" alt="bookmark-icon" className="HomePage_ActionIcon" />
-                                        </div>
-                                        <button className="HomePage_ViewLogs">
-                                            View Logs
-                                            <img src="arrow-right.png" alt="HomePage_ViewLogs" />
-                                        </button>
-                                    </div>
-                                </div>
-                                {/* add example branches here */}
-                            </div>                                               
-                        </div>
-                    </div> 
-                </div> 
+                        {gyms.length === 0 ? (
+                            <p>No gyms added yet. Click "Add Gym" to add your first gym.</p>
+                        ) : (
+                            <ul className="HomePage_GymList">
+                                {gyms.map((gym, index) => (
+                                    <li key={index} className="HomePage_GymItem">
+                                        <h3>{gym.gymName}</h3>
+                                        <p>{gym.branchLocation}</p>
+                                        <img src={gym.imageUrl} alt={gym.gymName} className="HomePage_GymImage" />
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                    </div>
+                </div>
             </div>
         </div>
     );

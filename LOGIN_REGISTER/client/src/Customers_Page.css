@@ -96,7 +96,7 @@ body {
 /* page main content */
 .CustomersPage_MainContent {
     margin-left: 3%; 
-    margin-top: 70px;
+    margin-top: 40px;
     padding: 20px;
     height: calc(100vh - 220px);
     position: relative;
@@ -181,7 +181,7 @@ body {
     width: 800px;
     max-width: 2000px;
     height: 100%;
-    max-height: 80vh;
+    max-height: 60vh;
     border: 1px solid #d6d5d5;
     border-radius: 8px;
     overflow-y: auto;
@@ -215,7 +215,6 @@ body {
 .CustomersPage_DetailsHeader span {
     flex: 1;
 }
-
 
 /* cusomer details */
 .CustomersPage_CustomerBox {
@@ -312,3 +311,30 @@ body {
     font-size: small; 
     font-weight: bold; 
 }
+
+.CustomersPage_Tabs {
+    display: flex;
+    margin-top: 20px;
+    justify-content: left;
+  }
+  
+  .CustomersPage_Tabs button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.2s;
+    border-radius: 5px;
+  }
+  
+  .CustomersPage_Tabs button:hover {
+    background-color: #ddd;
+    transform: scale(1.05);
+  }
+  
+  .CustomersPage_Tabs button.active {
+    background-color: #3C3181;
+    color: white;
+  }

@@ -314,27 +314,20 @@ body {
 /* calendar panel header */
 .calendar-header {
     display: flex;
-    align-items: center; 
+
     justify-content: center; 
-    background-color: #3C3181; 
+    background-color: #ffffff; 
     padding: 10px;
     border-radius: 8px; 
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-    color: white; 
+    color: #3C3181; 
     max-width: 51%;
     margin: 0 auto;
-}
-
-.calendar-header img {
-    width: 35px; 
-    height: 20px; 
 }
 
 .calendar-header h5 {
     margin: 0; 
     font-size: 15px; 
 }
-
   
 header {
     margin: 5px;
@@ -433,11 +426,10 @@ pre {
     display: flex;
     align-items: center; 
     justify-content: center; 
-    background-color: #3C3181; 
+    background-color: #ffffff; 
     padding: 10px;
     border-radius: 8px; 
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-    color: white; 
+    color: #3C3181; 
     margin-bottom: 20px; 
 }
 

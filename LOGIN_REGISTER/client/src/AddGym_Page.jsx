@@ -1,29 +1,58 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { db, auth } from './firebase'; // Importing Firebase services
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore'; // Firestore methods
 import '../src/AddGym_Page.css';
-import Home_Page from './Home_Page';
+
 function AddGym_Page() {
     const [gymName, setGymName] = useState('');
     const [branchLocation, setBranchLocation] = useState('');
     const [imageUrl, setImageUrl] = useState('');
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    // Function to handle the form submission
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Handle the logic for adding a new gym here, e.g., API call
-        console.log({ gymName, branchLocation, imageUrl });
-        // Reset fields after submission if needed
-        setGymName('');
-        setBranchLocation('');
-        setImageUrl('');
+        
+        // Basic validation to ensure all fields are filled
+        if (!gymName || !branchLocation || !imageUrl) {
+            alert('Please fill out all fields!');
+            return;
+        }
+    
+        const user = auth.currentUser; // Get the current user
+    
+        try {
+            // Add gym to Firestore under the user's UID
+            const gymRef = collection(db, 'users', user.uid, 'gyms');
+            await addDoc(gymRef, {
+                gymName,
+                branchLocation,
+                imageUrl,
+                createdAt: serverTimestamp(), // Timestamp for the gym creation
+            });
+    
+            // Reset form fields after successful submission
+            setGymName('');
+            setBranchLocation('');
+            setImageUrl('');
+            alert('Gym added successfully!');
+    
+            // Optionally, navigate to the "Your Gyms" page or anywhere else
+            navigate('/Home_Page'); // Adjust the page route
+        } catch (error) {
+            console.error('Error adding gym: ', error);
+            alert('There was an error adding the gym.');
+        }
     };
 
+    // Function to handle going back to the previous page
     const handleBack = () => {
         navigate(-1); // Go back to the previous page
     };
 
+    // Function to handle resetting the form
     const handleCancel = () => {
-        // Reset fields and perform any additional cancel logic if needed
         setGymName('');
         setBranchLocation('');
         setImageUrl('');
@@ -37,10 +66,10 @@ function AddGym_Page() {
 
             {/* Sidebar */}
             <div className="AddGymPage_ContentWrapper">
-                <nav className="AddGymPage_SideBar">         
+                <nav className="AddGymPage_SideBar">
                     <ul className="AddGymPage_NavigationLinks">
                         <li>
-                            <Link to ="/Home_Page">
+                            <Link to="/Home_Page">
                                 <img src="urgym.png" alt="Your Gyms" className="HomePage_NavigationIcon" />
                                 Your Gyms
                             </Link>
@@ -58,18 +87,18 @@ function AddGym_Page() {
                             </a>
                         </li>
                         <li>
-                            <a href="../customers/customers-page.html">
+                            <a href="/Customers_Page">
                                 <img src="customers.png" alt="Customers" className="AddGymPage_NavigationIcon" />
                                 Customers
                             </a>
                         </li>
                         <li>
-                            <a href="#">
-                                <img src="logout.png" alt="Logout" className="AddGymPage_NavigationIcon" />
+                             <Link to="/Login_Page">
+                                <img src="logout.png" alt="Logout" className="HomePage_NavigationIcon" />
                                 Logout
-                            </a>
+                            </Link>
                         </li>
-                    </ul>            
+                    </ul>
 
                     <div className="AddGymPage_UserInfo">
                         <a href="profile.html" className="AddGymPage_UserAccount">
