@@ -8,7 +8,7 @@ import Records_Page from './Records_Page';
 import Customers_Page from './Customers_Page';
 import AddCustomer_Page from './AddCustomer_Page';
 import Insights_Page from './Insights_Page';
-import Bookmark_Page from './Bookmark_page';
+import Bookmark_Page from './Bookmark_Page';
 
 function App() {
   return (
