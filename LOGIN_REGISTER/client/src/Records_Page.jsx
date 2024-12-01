@@ -23,13 +23,13 @@ function Records_Page(){
                             </Link>
                         </li>
                         <li>
-                            <a href="../bookmarks/bookmarks.html">
+                            <a href="./Bookmark_Page">
                                 <img src="bookmark.png" alt="Bookmarks" className="nav-icon" />
                                 Bookmarks
                             </a>
                         </li>
                         <li>
-                            <a href="../insights/insights.html">
+                            <a href="./Insights_Page">
                                 <img src="insight.png" alt="Insights" className="nav-icon" />
                                 Insights
                             </a>
@@ -128,7 +128,7 @@ function Records_Page(){
                     {/* calendar */}
                     <div className="calendar-panel">
                         <div className="calendar-header">
-                            <h5>SELECT DATE</h5>
+                              <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SELECT DATE</h5>
                         </div>
                         <div className="calendar">
                             <header>

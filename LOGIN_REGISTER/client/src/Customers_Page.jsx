@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { db, auth } from './firebase';
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { collection, getDocs, query, where, doc, getDoc } from 'firebase/firestore';
 import { Link, useNavigate } from 'react-router-dom';
 import '../src/Customers_Page.css';
 
@@ -8,6 +8,29 @@ function Customers_Page() {
   const navigate = useNavigate();
   const [customers, setCustomers] = useState([]);
   const [isMember, setIsMember] = useState(true); // Toggle between Member and Regular
+  const [userName, setUserName] = useState('');
+
+  // Fetch user's name from Firestore when the component mounts
+  useEffect(() => {
+    const fetchUserName = async () => {
+      const user = auth.currentUser;
+      if (user) {
+        try {
+          // Fetch user's name from Firestore
+          const userRef = doc(db, 'users', user.uid);
+          const userSnapshot = await getDoc(userRef);
+          if (userSnapshot.exists()) {
+            const userData = userSnapshot.data();
+            setUserName(`${userData.firstName} ${userData.lastName}`);
+          }
+        } catch (error) {
+          console.error('Error fetching user data: ', error);
+        }
+      }
+    };
+
+    fetchUserName();
+  }, []);
 
   // Fetch customers from Firestore when the component mounts
   useEffect(() => {
@@ -55,13 +78,13 @@ function Customers_Page() {
               </Link>
             </li>
             <li>
-              <a href="/Bookmarks.html">
+              <a href="/Bookmark_Page">
                 <img src="bookmark.png" alt="Bookmarks" className="HomePage_NavigationIcon" />
                 Bookmarks
               </a>
             </li>
             <li>
-              <a href="../insights/insights.html">
+              <a href="../Insights_Page">
                 <img src="insight.png" alt="Insights" className="HomePage_NavigationIcon" />
                 Insights
               </a>
@@ -79,6 +102,10 @@ function Customers_Page() {
               </Link>
             </li>
           </ul>
+          <div className="HomePage_UserInfo">
+            <img src="useravatar.png" alt="User Profile" className="HomePage_UserAvatar" />
+            <span>{userName}</span> {/* Displaying the user’s name */}
+          </div>
         </nav>
 
         {/* Main Content */}

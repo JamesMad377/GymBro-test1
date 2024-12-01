@@ -14,29 +14,29 @@ body {
     height: 100%;
 }
 
-.HomePage_Container {
+.container {
     display: flex;
     flex-direction: column;
     height: 100vh;
 }
 
-.HomePage_Logo {
+.logo {
     width: 100%;
     display: flex;
     margin-top: -10px;
 }
 
-.HomePage_Logo img {
+.logo img {
     max-width: 20%; 
     height: auto;
 }
 
-.HomePage_Layout {
+.layout {
     display: flex; /* Allows for two columns */
     flex: 1; /* Takes the remaining height */
 }
 
-.HomePage_SideBar {
+.SideBar {
     width: 21%;
     background: linear-gradient(180deg, #3C3181 0%, #321F59 100%);
     color: white;
@@ -47,16 +47,16 @@ body {
     flex-direction: column;
 }
 
-.HomePage_NavigationLinks {
+.navlinks {
     list-style-type: none;
     padding: 0;
 }
 
-.HomePage_NavigationLinks li {
+.navlinks li {
     margin-left: 40px;
 }
 
-.HomePage_NavigationLinks a {
+.navlinks a {
     color: white;
     text-decoration: none;
     display: flex;
@@ -64,36 +64,36 @@ body {
     font-size: large;
 }
 
-.HomePage_NavigationIcon {
+.nav-icon {
     width: 50%; 
     height: auto; 
     margin-left: -30px;
 }
 
-.HomePage_UserInfo {
+.userinfo {
     display: flex;
     align-items: center;
     margin-top: 120px;
 }
 
-.HomePage_UserAvatar {
+.user-avatar {
     width: 50%;
     height: auto;
 }
 
-.HomePage_UserAccount {
+.userAcc {
     display: flex;
     align-items: center;
     text-decoration: none; 
     color: white; 
 }
 
-.HomePage_UserAccount span {
+.userAcc span {
     margin-left: -27px;
 }
 
 /* page main content */
-.HomePage_MainContent {
+.main-content {
     margin-left: 3%; 
     margin-top: 70px;
     padding: 20px;
@@ -103,11 +103,11 @@ body {
     box-sizing: border-box;
 }
 
-.HomePage_MainContent::-webkit-scrollbar {
+.main-content::-webkit-scrollbar {
     display: none;
 }
 
-.HomePage_TopPart {
+.top-part {
     position: fixed; 
     height: 150px;
     top: 80px;
@@ -121,20 +121,20 @@ body {
     padding: 10px; 
 }
 
-.HomePage_TopPart h1 {
+.top-part h1 {
     font-size: 36px; 
     color: #3C3181; 
     margin-bottom: 10px;
 }
 
-.HomePage_SearchBar {
+.search-bar {
     display: flex;
     align-items: center;
     gap: 10px; 
     margin-bottom: 20px;
 }
 
-.HomePage_SearchBar input {
+.search-bar input {
     width: 300px;
     padding: 10px;
     border-radius: 10px;
@@ -143,7 +143,7 @@ body {
     outline: none;
 }
 
-.HomePage_AddGymButton {
+.add-gym-btn {
     display: inline-flex;  
     align-items: center;  
     background: linear-gradient(90deg, #3C3181 0%, #321F59 100%);
@@ -154,87 +154,49 @@ body {
     margin-left: 310px;
 }
 
-.HomePage_AddGymButton:active {
+.add-gym-btn:active {
     transform: translateY(2px); 
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
 }
 
-.HomePage_AddGymButton img {
+.add-gym-btn img {
     width: 25px;   
     margin-right: 8px; 
     vertical-align: middle; 
 }
 /* gyms */
 
-.HomePage_GymAndBranches {
-    display: flex;
-    flex-direction: column;
-    gap: 20px; /* Space between each gym item */
-    padding: 5px;
-    width: 100%;
-    max-height: 80vh; /* Adjust as needed */
-    
+.gym-and-branches {
+    margin-bottom: 20px;
+    margin-left: 10px;
 }
 
-.HomePage_GymItem {
+/* gym top part */
+.gyms-top-part {
     display: flex;
     align-items: center;
-    background-color: white;
-    border: 1px solid #3C3181;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 700px;   /* Set fixed width */
-    height: 200px;  /* Set fixed height to make it rectangular */
-    justify-content: space-between;
-}
-
-.HomePage_GymItem h3 {
-    font-size: 22px;
-    color: #3C3181;
-    margin-bottom: 10px;
-}
-
-.HomePage_GymItem p {
-    font-size: 16px;
-    color: #666666;
-}
-
-.HomePage_GymDetails {
-    display: flex;
-    flex-direction: column;
-    margin-left: 20px;
-    flex: 1;
-}
-/* gym top part */
-.HomePage_GymsTopPart {
+    justify-content: space-between; 
     background: linear-gradient(90deg, #3C3181 0%, #321F59 100%);
     padding: 15px;
     border-radius: 10px;
-    width: 100%;
-    box-sizing: border-box;
+    width: 750px;
+    box-sizing: border-box; 
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-
 }
 
-.HomePage_GymBox {
+.gym-box {
     display: flex;
     flex-direction: column; 
 }
 
-.HomePage_GymName {
-    color: #3C3181;
-    font-weight: bold;
-    padding: 8px 12px; /* Adjust padding to have space around the text */
-    font-size: 25px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    display: inline-block;  /* Ensures width adjusts based on content */
-    white-space: nowrap;    /* Prevents text from wrapping to the next line */
+.gym-name {
+    font-size: 18px;
+    color: #ffffff;
+    flex-grow: 1; 
+    margin-right: 10px;
 }
 
-
-.HomePage_AddBranchButton {
+.add-branch-btn {
     padding: 5px 10px;
     background: white;
     color: #321F59;
@@ -244,73 +206,48 @@ body {
     margin-right: 10px; 
 }
 
-.HomePage_AddBranchButton:active {
+.add-branch-btn:active {
     transform: translateY(2px); 
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
 }
 
-.HomePage_AddIcon {
+.add-icon {
     width: 15px;
     margin-right: 5px;
 }
 
-.HomePage_EditIcon {
+.edit-icon {
     width: 20px;
     height: auto;
     cursor: pointer;
 }
 
-.HomePage_EditIcon:active {
+.edit-icon:active {
     transform: translateY(2px); 
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
 }
 
-.HomePage_AddBranchButton:hover, .HomePage_EditIcon:hover {
+.add-branch-btn:hover, .edit-icon:hover {
     opacity: 0.8;
     transition: opacity 0.2s ease-in-out;
 }
 
 
 /* branch details */
-.HomePage_GymAddress {
-    font-size: 16px;
-    color: #666666;
-    margin-left: 13px; /* Adjust to add space between name and address */
-}
-
-.HomePage_ViewDetails {
-    background-color: #3C3181;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 16px;
-    text-align: center;
-    transition: background-color 0.2s;
-}
-
-.HomePage_ViewDetails:hover {
-    background-color: #281c54;
-}
-
-.HomePage_BranchList {
+.branch-list {
     display: flex;
     flex-direction: column;
     padding-bottom: 20px; 
 }
 
-.branch-details a {
-    text-decoration: none;
-}
-
-.HomePage_BranchItem{
+.branch-item {
     border: 2px solid #3C3181;  
-    border-top: none; 
+    border-top: 2px solid #3C3181;
     padding: 10px; 
     display: flex; 
     justify-content: space-between; 
     align-items: flex-start; 
-    width: 90%;
+    width: 63%;
     margin-left: 37px;
     background: rgba(255, 255, 255, 0.5); 
     border-radius: 5px; 
@@ -319,13 +256,15 @@ body {
     overflow: hidden;
 }
 
-.HomePage_GymImage img {
-    width: 190px; /* Adjust size as needed */
-    height: 170px;
-    border-radius: 5px;
+.gym-img img {
+    width: 200px; 
+    height: auto; 
+    margin-top: -10px;
+    margin-left: -10px;
+    margin-bottom: -14px;
 }
 
-.HomePage_BranchDetails{
+.branch-details {
     display: flex;
     flex-direction: column; 
     margin-top: 20px; 
@@ -335,24 +274,24 @@ body {
     overflow: hidden; 
 }
 
-.HomePage_BranchLocation {
+.branch-location {
     font-size: 16px;
     color: #3C3181; 
 }
 
-.HomePage_BranchName {
+.branch-name {
     font-size: 14px; 
     color: #666666; 
 }
 
 /* actions */
-.HomePage_BranchActions {
+.branch-actions {
     display: flex; 
     flex-direction: column;
     align-items: flex-end; 
 }
 
-.HomePage_TopActions {
+.top-actions {
     display: flex; 
     align-items: center; 
 } 
@@ -361,14 +300,14 @@ img[alt="insight-icon"] {
     margin-right: -60px;
 }
 
-.HomePage_ActionIcon {
+.action-icon {
     width: 100px;
     height: auto; 
     cursor: pointer; 
     margin-right: -30px;
 }
 
-.HomePage_ViewLogs {
+.view-logs {
     background-color: transparent; 
     border: none; 
     color: #3C3181; 
@@ -380,9 +319,8 @@ img[alt="insight-icon"] {
     margin-bottom: 5px;
 }
 
-.HomePage_ViewLogs img {
+.view-logs img {
     width: 16px; 
     margin-left: 5px; 
     cursor: pointer;
 }
-

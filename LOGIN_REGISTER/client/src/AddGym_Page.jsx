@@ -99,13 +99,6 @@ function AddGym_Page() {
                             </Link>
                         </li>
                     </ul>
-
-                    <div className="AddGymPage_UserInfo">
-                        <a href="profile.html" className="AddGymPage_UserAccount">
-                            <img src="useravatar.png" alt="User Profile" className="AddGymPage_UserAvatar" />
-                            <span>Juan Dela Cruz</span>
-                        </a>
-                    </div>
                 </nav>
 
                 {/* Form for adding gym */}

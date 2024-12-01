@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import '../src/LS_styles.css';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from './firebase'; // Importing auth from firebase.js
+import { db } from './firebase'; // Import Firestore instance
+import { doc, setDoc } from 'firebase/firestore'; // Firestore methods
 
 function Signup_Page() {
     const [firstName, setFirstName] = useState('');
@@ -31,8 +33,18 @@ function Signup_Page() {
 
         try {
             // Create user with Firebase Authentication
-            await createUserWithEmailAndPassword(auth, email, password);
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user;
             console.log("User Registered Successfully!");
+
+            // Store user data (first name and last name) in Firestore
+            const userRef = doc(db, 'users', user.uid); // Reference to user's document in Firestore
+            await setDoc(userRef, {
+                firstName: firstName,
+                lastName: lastName,
+            });
+
+            // Redirect to login page after successful signup
             navigate('/Login_Page');
         } catch (error) {
             // Handle Firebase errors

@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { db, auth } from "./firebase"; // Import auth from your firebase.js
-import { collection, addDoc } from "firebase/firestore"; // Import Firestore methods
+import { collection, addDoc, query, where, getDocs } from "firebase/firestore"; // Import Firestore methods
 import '../src/AddCustomer_Page.css';
 
 function AddCustomer_Page() {
   const navigate = useNavigate();
-
+  
   // Form state
   const [formData, setFormData] = useState({
     fullname: "",
@@ -17,6 +17,24 @@ function AddCustomer_Page() {
     startDate: "",
     endDate: "",
   });
+
+  const [userName, setUserName] = useState(''); // For storing the user's name
+  
+  // Fetch user information (user name) when the component mounts
+  useEffect(() => {
+    const fetchUserName = async () => {
+      const user = auth.currentUser;
+      if (user) {
+        const userRef = query(collection(db, 'users'), where('uid', '==', user.uid));
+        const querySnapshot = await getDocs(userRef);
+        querySnapshot.forEach((doc) => {
+          setUserName(doc.data().name); // Assuming 'name' field exists in the 'users' collection
+        });
+      }
+    };
+    
+    fetchUserName();
+  }, []);
 
   // Handle input change
   const handleChange = (e) => {
@@ -35,7 +53,6 @@ function AddCustomer_Page() {
     try {
       // Check if user is logged in
       const user = auth.currentUser; // Use 'auth' from firebase.js for current user
-     
 
       // Add customer to Firestore
       const collectionName = isMember ? "Members" : "Regular";

@@ -7,6 +7,8 @@ import AddGym_Page from './AddGym_Page';
 import Records_Page from './Records_Page';
 import Customers_Page from './Customers_Page';
 import AddCustomer_Page from './AddCustomer_Page';
+import Insights_Page from './Insights_Page';
+import Bookmark_Page from './Bookmark_page';
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
             <Route path="/Records_Page" element={<Records_Page />} />
             <Route path="/Customers_Page" element={<Customers_Page/>} />
             <Route path="/AddCustomer_Page" element={<AddCustomer_Page/>} />
+            <Route path="/Insights_Page" element={<Insights_Page/>} />
+            <Route path="/Bookmark_Page" element={<Bookmark_Page/>} />
         </Routes>
     </Router>
 );
