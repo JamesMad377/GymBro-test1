@@ -101,21 +101,37 @@ function Home_Page() {
                             <p>No gyms added yet. Click "Add Gym" to add your first gym.</p>
                         ) : (
                             gyms.map((gym, index) => (
-                                <div key={index} className="HomePage_GymItem">
-                                    <div className="HomePage_GymImage">
-                                        <img src={gym.imageUrl} alt={gym.gymName} />
+                                <div key={index} className="HomePage_GymBox">
+                                    <div className="HomePage_GymsTopPart">
+                                        <span className="HomePage_GymName">{gym.gymName}</span>
+                                        <Link to="#"><img src="editIcon.png" alt="Edit" className="HomePage_EditIcon" /></Link>
                                     </div>
-                                    <div className="HomePage_GymDetails">
-                                        <div className="HomePage_GymName">{gym.gymName}</div>
-                                        <div className="HomePage_GymAddress">{gym.branchLocation}</div>
+
+                                    <div className="HomePage_BranchList">
+                                        {/* Use gym.gymName and gym.branchLocation directly */}
+                                        <div className="HomePage_BranchItem">
+                                            <div className="HomePage_GymImage">
+                                                <img src={gym.imageUrl} alt="Gym Image" />
+                                            </div>
+
+                                            <div className="HomePage_BranchDetails">
+                                                <span className="HomePage_BranchLocation">{gym.branchLocation}</span>
+                                                <span className="HomePage_BranchName">{gym.gymName}</span>
+                                            </div>
+
+                                            <div className="HomePage_BranchActions">
+                                                <button className="HomePage_ViewLogs" onClick={() => navigate("/Records_Page")}>
+                                                    View Logs
+                                                    <img src="arrow-right.png" alt="view-logs" />
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <Link to="/Records_Page" className="HomePage_ViewDetails">
-                                        View Logs
-                                    </Link>
                                 </div>
                             ))
                         )}
                     </div>
+
                 </div>
             </div>
         </div>

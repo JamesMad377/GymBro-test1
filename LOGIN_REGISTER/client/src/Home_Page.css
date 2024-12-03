@@ -167,54 +167,21 @@ body {
 /* gyms */
 
 .HomePage_GymAndBranches {
-    display: flex;
-    flex-direction: column;
-    gap: 20px; /* Space between each gym item */
-    padding: 5px;
-    width: 100%;
-    max-height: 80vh; /* Adjust as needed */
-    
+    margin-bottom: 20px;
+    margin-left: 10px;
 }
 
-.HomePage_GymItem {
-    display: flex;
-    align-items: center;
-    background-color: white;
-    border: 1px solid #3C3181;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 700px;   /* Set fixed width */
-    height: 200px;  /* Set fixed height to make it rectangular */
-    justify-content: space-between;
-}
-
-.HomePage_GymItem h3 {
-    font-size: 22px;
-    color: #3C3181;
-    margin-bottom: 10px;
-}
-
-.HomePage_GymItem p {
-    font-size: 16px;
-    color: #666666;
-}
-
-.HomePage_GymDetails {
-    display: flex;
-    flex-direction: column;
-    margin-left: 20px;
-    flex: 1;
-}
 /* gym top part */
 .HomePage_GymsTopPart {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
     background: linear-gradient(90deg, #3C3181 0%, #321F59 100%);
     padding: 15px;
     border-radius: 10px;
-    width: 100%;
-    box-sizing: border-box;
+    width: 750px;
+    box-sizing: border-box; 
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-
 }
 
 .HomePage_GymBox {
@@ -223,16 +190,11 @@ body {
 }
 
 .HomePage_GymName {
-    color: #3C3181;
-    font-weight: bold;
-    padding: 8px 12px; /* Adjust padding to have space around the text */
-    font-size: 25px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    display: inline-block;  /* Ensures width adjusts based on content */
-    white-space: nowrap;    /* Prevents text from wrapping to the next line */
+    font-size: 18px;
+    color: #ffffff;
+    flex-grow: 1; 
+    margin-right: 10px;
 }
-
 
 .HomePage_AddBranchButton {
     padding: 5px 10px;
@@ -272,27 +234,6 @@ body {
 
 
 /* branch details */
-.HomePage_GymAddress {
-    font-size: 16px;
-    color: #666666;
-    margin-left: 13px; /* Adjust to add space between name and address */
-}
-
-.HomePage_ViewDetails {
-    background-color: #3C3181;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 16px;
-    text-align: center;
-    transition: background-color 0.2s;
-}
-
-.HomePage_ViewDetails:hover {
-    background-color: #281c54;
-}
-
 .HomePage_BranchList {
     display: flex;
     flex-direction: column;
@@ -305,12 +246,12 @@ body {
 
 .HomePage_BranchItem{
     border: 2px solid #3C3181;  
-    border-top: none; 
+    border-top: 2px solid #3C3181;
     padding: 10px; 
     display: flex; 
     justify-content: space-between; 
     align-items: flex-start; 
-    width: 90%;
+    width: 94%;
     margin-left: 37px;
     background: rgba(255, 255, 255, 0.5); 
     border-radius: 5px; 
@@ -320,9 +261,11 @@ body {
 }
 
 .HomePage_GymImage img {
-    width: 190px; /* Adjust size as needed */
-    height: 170px;
-    border-radius: 5px;
+    width: 200px; 
+    height: auto; 
+    margin-top: -10px;
+    margin-left: -10px;
+    margin-bottom: -14px;
 }
 
 .HomePage_BranchDetails{
@@ -332,7 +275,7 @@ body {
     flex: 1; 
     max-height: 60px; 
     max-width: 300px;
-    overflow: hidden; 
+    overflow: hidden;
 }
 
 .HomePage_BranchLocation {
@@ -385,4 +328,3 @@ img[alt="insight-icon"] {
     margin-left: 5px; 
     cursor: pointer;
 }
-
