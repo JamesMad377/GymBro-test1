@@ -98,7 +98,7 @@ function Customers_Page() {
               </a>
             </li>
             <li>
-              <a href="../Insights_Page">
+              <a href="/Insights_Page">
                 <img src="insight.png" alt="Insights" className="HomePage_NavigationIcon" />
                 Insights
               </a>
