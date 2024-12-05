@@ -57,9 +57,10 @@ function Records_Page(){
                     </div>
                 </nav>
 
-                {/* main content */}
-                <div className="main-content">
-                    <button className="back-button">
+               {/* Main Content */}
+               <div className="main-content">
+                    {/* Back Button */}
+                    <button className="back-button" onClick={() => navigate('/Home_Page')}>
                         <img src="arrow-left.png" alt="Back" />
                         Back
                     </button>

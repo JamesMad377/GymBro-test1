@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { db, auth } from './firebase';
-import { collection, getDocs, query, where, doc, getDoc } from 'firebase/firestore';
+import { collection, getDocs, query, where, doc, getDoc, deleteDoc } from 'firebase/firestore';
 import { Link, useNavigate } from 'react-router-dom';
 import '../src/Customers_Page.css';
 
@@ -16,7 +16,6 @@ function Customers_Page() {
       const user = auth.currentUser;
       if (user) {
         try {
-          // Fetch user's name from Firestore
           const userRef = doc(db, 'users', user.uid);
           const userSnapshot = await getDoc(userRef);
           if (userSnapshot.exists()) {
@@ -41,7 +40,7 @@ function Customers_Page() {
           collection(db, collectionName), // Use the dynamic collection name
           where('uid', '==', auth.currentUser.uid) // Filter customers by user ID
         );
-        
+
         const querySnapshot = await getDocs(q);
         const customersList = [];
         querySnapshot.forEach((doc) => {
@@ -55,6 +54,21 @@ function Customers_Page() {
 
     fetchCustomers();
   }, [isMember]); // Add 'isMember' to the dependency array to re-fetch when the tab changes
+
+  // Function to delete customer
+  const handleDeleteCustomer = async (customerId) => {
+    try {
+      // Get the reference of the customer document to delete
+      const customerDocRef = doc(db, isMember ? 'Members' : 'Regular', customerId);
+      // Delete the customer document
+      await deleteDoc(customerDocRef);
+      // After deletion, remove the customer from the state
+      setCustomers(customers.filter(customer => customer.id !== customerId));
+      console.log('Customer deleted successfully');
+    } catch (error) {
+      console.error('Error deleting customer: ', error);
+    }
+  };
 
   // Filter customers based on the selected tab (Member or Regular)
   const filteredCustomers = customers.filter(customer => customer.isMember === isMember);
@@ -143,13 +157,33 @@ function Customers_Page() {
             <div className="customer-list">
               {filteredCustomers.length > 0 ? (
                 filteredCustomers.map((customer) => (
-                  <div className="CustomersPage_CustomerBox" key={customer.id}>
+                  <div key={customer.id} className="CustomersPage_CustomerBox">
                     <div className="CustomersPage_Basic_Details">
-                      <span className="CustomersPage_CustomerName">{customer.fullname}</span>
-                      <span className="CustomersPage_CustomerContact">{customer.contactnumber}</span>
-                      <span className="customer-start">{customer.startDate}</span>
-                      <span className="customer-end">{customer.endDate}</span>
-                      <span className="customer-days">{calculateDays(customer.startDate, customer.endDate)}</span>
+                      <div className="customer-detail">
+                        <span className="CustomersPage_CustomerName">{customer.fullname}</span>
+                      </div>
+                      <div className="customer-detail">
+                        <span className="CustomersPage_CustomerContact">{customer.contactnumber}</span>
+                      </div>
+                      <div className="customer-detail">
+                        <span className="customer-start">{customer.startDate}</span>
+                      </div>
+                      <div className="customer-detail">
+                        <span className="customer-end">{customer.endDate}</span>
+                      </div>
+                      <div className="customer-detail">
+                        <span className="customer-days">{calculateDays(customer.startDate, customer.endDate)}</span>
+                      </div>
+                      {/* Add Delete icon next to Days */}
+                      <button className="delete-button" onClick={() => handleDeleteCustomer(customer.id)}>
+                        <img src="./delete-icon.png" alt="delete-icon" />
+                      </button>
+                    </div>
+                    <br />
+                    {/* Add space between delete icon and address/emergency contact */}
+                    <div className="CustomersPage_AddressEmergency">
+                      <p>Address: <span>{customer.address}</span></p>
+                      <p>Emergency Contact: <span>{customer.emergencynumber}</span></p>
                     </div>
                   </div>
                 ))
