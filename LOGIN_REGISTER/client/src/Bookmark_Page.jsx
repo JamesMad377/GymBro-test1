@@ -52,7 +52,6 @@ function Bookmark_Page (){
           <div className="userinfo">
             <a href="profile.html" className="userAcc">
               <img src="useravatar.png" alt="User Profile" className="user-avatar" />
-              <span>Juan Dela Cruz</span>
             </a>
           </div>
         </nav>

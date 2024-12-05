@@ -50,7 +50,6 @@ function Insights_Page() {
           <div className="userinfo">
             <a className="userAcc">
               <img src="useravatar.png" alt="User Profile" className="user-avatar" />
-              <span>Juan Dela Cruz</span>
             </a>
           </div>
         </nav>
