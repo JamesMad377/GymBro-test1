@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import '../src/Records_Page.css';
+import './Records_Page.css';
 import Home_Page from './Home_Page';
 function Records_Page(){
 
@@ -58,7 +58,7 @@ function Records_Page(){
                 </nav>
 
                {/* Main Content */}
-               <div className="main-content">
+               <div className="mainrecords-content">
                     {/* Back Button */}
                     <button className="back-button" onClick={() => navigate('/Home_Page')}>
                         <img src="arrow-left.png" alt="Back" />

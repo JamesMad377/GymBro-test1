@@ -57,7 +57,7 @@ function Insights_Page() {
         {/* Main Content */}
         <div className="InsightsPage_MainContent" id="mainContent">
           {/* Top Part */}
-          <div className="top-part">
+          <div className="top-part-insights">
             <h1>Insights</h1>
             <div className="search-bar">
               <img src="loc-icon-violet.png" alt="Location Icon" />

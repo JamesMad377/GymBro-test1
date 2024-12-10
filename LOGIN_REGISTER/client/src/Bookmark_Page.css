@@ -94,9 +94,9 @@ body {
 
 /* page main content */
 .main-content {
-    margin-left: 3%; 
+    margin-left: 20px; 
     margin-top: 70px;
-    padding: 20px;
+    padding: 30px;
     overflow-y: auto; 
     height: calc(100vh - 220px);
     position: relative;
@@ -115,10 +115,8 @@ body {
     display: flex; 
     flex-direction: column; 
     align-items: flex-start; 
-    background-color: #ffffff; 
     z-index: 10; 
     width: 100%; 
-    padding: 10px; 
 }
 
 .top-part h1 {
@@ -131,7 +129,6 @@ body {
     display: flex;
     align-items: center;
     gap: 10px; 
-    margin-bottom: 20px;
 }
 
 .search-bar input {
@@ -247,7 +244,7 @@ body {
     display: flex; 
     justify-content: space-between; 
     align-items: flex-start; 
-    width: 63%;
+    width: 94%;
     margin-left: 37px;
     background: rgba(255, 255, 255, 0.5); 
     border-radius: 5px; 

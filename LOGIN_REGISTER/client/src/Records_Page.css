@@ -96,14 +96,13 @@ body {
 }
 
 /* Main content column */
-.main-content {
+.mainrecords-content {
     flex: 1; 
-    padding: 20px;
+    padding: 20px; 
     height: 100vh;
     display: flex;
     flex-direction: column;
-    margin-top: -150px;
-    border-right: 1px solid #321F59;
+    margin-top: -100px;
 }
 
 .back-button {
@@ -125,7 +124,7 @@ body {
 }
 
 /* title page */
-.main-content h1{
+.mainrecords-content h1{
     color: #3C3181;
     margin-top: 5px;
     margin-bottom: 10px;
@@ -156,7 +155,6 @@ body {
 .search-date-container {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
 }
 
 .search-bar {
@@ -273,7 +271,7 @@ body {
     width: 30%;
     height: 100vh;
     padding: 20px;
-    margin-top: -150px;
+    margin-top: -170px;
     box-shadow: inset 4px 0 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -286,7 +284,7 @@ body {
     margin: 10px 0;
     border-bottom: 2px solid #321F59;
     padding-bottom: 10px;
-    margin-top: -5px;
+    margin-top: -px;
 }
 
 /* date today*/

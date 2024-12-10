@@ -107,11 +107,11 @@ body {
     display: none;
 }
 
-.top-part {
+.top-part-insights {
     position: fixed; 
     height: 100px;
     top: 0;
-    margin-top: 30px;
+    margin-top: 70px;
     z-index: 10; 
     display: flex; 
     flex-direction: column; 
@@ -122,7 +122,7 @@ body {
 }
 
 /* header */
-.top-part h1 {
+.top-part-insights h1 {
     font-size: 36px; 
     color: #3C3181; 
     margin-bottom: 10px;
@@ -154,7 +154,7 @@ body {
 }
 
 .date-selector {
-    margin-bottom: -20px; 
+    margin-bottom: 10px; 
     margin-left: 30px;
 }
 
@@ -170,6 +170,7 @@ body {
     background-color: white;
     cursor: pointer;
     font-size: 13px;
+    margin-top: 40px;
 }
 
 .date-list {
@@ -237,6 +238,7 @@ body {
     padding-bottom: 1px;
     box-shadow: 0 4px 6px rgba(.1, .1, .1, .2); 
     border-radius: 25px;
+    margin-top: -30px;
 }
 
 /* box title */
