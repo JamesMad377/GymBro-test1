@@ -312,7 +312,6 @@ body {
 /* calendar panel header */
 .calendar-header {
     display: flex;
-
     justify-content: center; 
     background-color: #ffffff; 
     padding: 10px;
@@ -325,6 +324,7 @@ body {
 .calendar-header h5 {
     margin: 0; 
     font-size: 15px; 
+    padding-left: 40px;
 }
   
 header {

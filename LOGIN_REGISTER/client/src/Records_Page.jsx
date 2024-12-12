@@ -23,16 +23,16 @@ function Records_Page(){
                             </Link>
                         </li>
                         <li>
-                            <a href="./Bookmark_Page">
-                                <img src="bookmark.png" alt="Bookmarks" className="nav-icon" />
+                            <Link to ={'/Bookmark_Page'}>
+                                <img src="bookmark.png" alt="Bookmarks" className="HomePage_NavigationIcon" />
                                 Bookmarks
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a href="./Insights_Page">
-                                <img src="insight.png" alt="Insights" className="nav-icon" />
+                             <Link to={'/Insights_Page'}>
+                                <img src="insight.png" alt="Insights" className="HomePage_NavigationIcon" />
                                 Insights
-                            </a>
+                            </Link>
                         </li>
                         <li>
                             <Link to={'/Customers_Page'}>
@@ -129,7 +129,7 @@ function Records_Page(){
                     {/* calendar */}
                     <div className="calendar-panel">
                         <div className="calendar-header">
-                              <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SELECT DATE</h5>
+                              <h5>SELECT DATE</h5>
                         </div>
                         <div className="calendar">
                             <header>
@@ -153,6 +153,9 @@ function Records_Page(){
                                 <div className="calendar-day">2</div>
                                 <div className="calendar-day">3</div>
                                 <div className="calendar-day">4</div>
+                                <div className="calendar-day">5</div>
+                                <div className="calendar-day">6</div>
+                                <div className="calendar-day">7</div>
                                 {/* Continue adding calendar days */}
                             </div>
                         </div>
