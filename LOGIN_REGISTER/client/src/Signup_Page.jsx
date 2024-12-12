@@ -63,9 +63,9 @@ function Signup_Page() {
         <div className="LS_Container">
             <div className="Login_Form">
                 <div className="LS_Logo">
-                    <img src="LS_logo.png" alt="GymBro Logo" />
+                    <img src="GB22.png" alt="GymBro Logo" />
                 </div>
-                <h2>Welcome to GymBro!</h2>
+                
                 <h5>Register your account</h5>
                 
                 <form onSubmit={handleSubmit}>

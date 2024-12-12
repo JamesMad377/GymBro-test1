@@ -26,9 +26,9 @@ function Login_Page() {
         <div className="LS_Container">
             <div className="Login_Form">
                 <div className="LS_Logo">
-                    <img src="LS_logo.png" alt="GymBro Logo" />
+                    <img src="GB22.png" alt="GymBro Logo" />
                 </div>
-                <h1>Log in to your Account</h1>
+                
                 <form onSubmit={handleSubmit}>
                     <input 
                         type="email" 
