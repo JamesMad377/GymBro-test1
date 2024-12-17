@@ -13,6 +13,7 @@ function Signup_Page() {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
+    const [loading, setLoading] = useState(false); // Track loading state
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -30,6 +31,8 @@ function Signup_Page() {
             setErrorMessage('Please enter a valid email address!');
             return;
         }
+
+        setLoading(true); // Start loading
 
         try {
             // Create user with Firebase Authentication
@@ -56,18 +59,20 @@ function Signup_Page() {
                 setErrorMessage('Something went wrong, please try again.');
             }
             console.error(error.message);
+        } finally {
+            setLoading(false); // Stop loading after request completes
         }
     };
 
     return (
         <div className="LS_Container">
-            <div className="Login_Form">
+            <div className={`Login_Form ${loading ? 'fade-out' : 'fade-in'}`}>
                 <div className="LS_Logo">
                     <img src="GB22.png" alt="GymBro Logo" />
                 </div>
-                
+
                 <h5>Register your account</h5>
-                
+
                 <form onSubmit={handleSubmit}>
                     <input 
                         type="text" 
@@ -103,12 +108,14 @@ function Signup_Page() {
                         onChange={(e) => setConfirmPassword(e.target.value)}
                     />
                     {errorMessage && <p className="error-message">{errorMessage}</p>}
-                    <button type="submit">Create Account</button>
+                    <button type="submit" className={loading ? 'disabled' : ''} disabled={loading}>
+                        Create Account
+                    </button>
                 </form>
                 <p>Already have an account? <Link to="/Login_Page">Log In</Link></p>
             </div>
 
-            <div className="Welcome_Section">
+            <div className={`Welcome_Section ${loading ? 'fade-out' : 'fade-in'}`}>
                 <img src="rightPanel.png" alt="background" className="LS_Background" />
                 <div className="Welcome_Message">
                     <h3>Welcome back!</h3>

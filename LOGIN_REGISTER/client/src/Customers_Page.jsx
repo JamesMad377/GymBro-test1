@@ -7,8 +7,10 @@ import '../src/Customers_Page.css';
 function Customers_Page() {
   const navigate = useNavigate();
   const [customers, setCustomers] = useState([]);
+  const [filteredCustomers, setFilteredCustomers] = useState([]);
   const [isMember, setIsMember] = useState(true); // Toggle between Member and Regular
   const [userName, setUserName] = useState('');
+  const [searchTerm, setSearchTerm] = useState(''); // State to hold the search term
 
   // Fetch user's name from Firestore when the component mounts
   useEffect(() => {
@@ -31,7 +33,7 @@ function Customers_Page() {
     fetchUserName();
   }, []);
 
-  // Fetch customers from Firestore when the component mounts
+  // Fetch customers from Firestore when the component mounts or when isMember changes
   useEffect(() => {
     const fetchCustomers = async () => {
       try {
@@ -47,6 +49,7 @@ function Customers_Page() {
           customersList.push({ id: doc.id, ...doc.data() });
         });
         setCustomers(customersList); // Set customers to state
+        setFilteredCustomers(customersList); // Initialize filteredCustomers with the complete list
       } catch (error) {
         console.error('Error fetching customer data: ', error);
       }
@@ -64,14 +67,25 @@ function Customers_Page() {
       await deleteDoc(customerDocRef);
       // After deletion, remove the customer from the state
       setCustomers(customers.filter(customer => customer.id !== customerId));
+      setFilteredCustomers(filteredCustomers.filter(customer => customer.id !== customerId)); // Remove from filtered list
       console.log('Customer deleted successfully');
     } catch (error) {
       console.error('Error deleting customer: ', error);
     }
   };
 
-  // Filter customers based on the selected tab (Member or Regular)
-  const filteredCustomers = customers.filter(customer => customer.isMember === isMember);
+  // Handle search input and filter customers dynamically
+  const handleSearch = (event) => {
+    const term = event.target.value.toLowerCase();
+    setSearchTerm(term);
+
+    // Filter customers based on the search term
+    const filtered = customers.filter(customer =>
+      customer.fullname.toLowerCase().includes(term) || // Search by fullname
+      customer.contactnumber.includes(term) // Or search by contact number
+    );
+    setFilteredCustomers(filtered); // Update the filtered customers list
+  };
 
   return (
     <div className="CustomersPage_Container">
@@ -127,7 +141,12 @@ function Customers_Page() {
           <div className="CustomersPage_TopPart">
             <h1>Customers</h1>
             <div className="CustomersPage_SearchBar">
-              <input type="text" placeholder="Search here" />
+              <input
+                type="text"
+                placeholder="Search here"
+                value={searchTerm}
+                onChange={handleSearch} // Update searchTerm on input change
+              />
               <button className="CustomersPage_AddCustomerButton" onClick={() => navigate('/AddCustomer_Page')}>
                 <img src="AddIcon.png" alt="add-icon" />
                 Add Customer

@@ -6,7 +6,9 @@ import '../src/Home_Page.css'; // Ensure CSS path is correct
 
 function Home_Page() {
     const [gyms, setGyms] = useState([]);
+    const [filteredGyms, setFilteredGyms] = useState([]);  // State for filtered gyms
     const [userName, setUserName] = useState('');
+    const [searchQuery, setSearchQuery] = useState('');  // State for search query
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -25,6 +27,7 @@ function Home_Page() {
                     const gymSnapshot = await getDocs(gymRef);
                     const gymList = gymSnapshot.docs.map(doc => doc.data());
                     setGyms(gymList);
+                    setFilteredGyms(gymList);  // Set filtered gyms initially
                 } catch (error) {
                     console.error("Error fetching gyms or user data: ", error);
                 }
@@ -33,6 +36,19 @@ function Home_Page() {
 
         fetchData();
     }, []);
+
+    useEffect(() => {
+        // Filter gyms based on search query
+        if (searchQuery === '') {
+            setFilteredGyms(gyms);  // If search query is empty, show all gyms
+        } else {
+            const filtered = gyms.filter(gym => 
+                gym.gymName.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                gym.branchLocation.toLowerCase().includes(searchQuery.toLowerCase())
+            );
+            setFilteredGyms(filtered);
+        }
+    }, [searchQuery, gyms]);  // Re-run the filtering whenever gyms or searchQuery changes
 
     return (
         <div className="HomePage_Container">
@@ -85,7 +101,12 @@ function Home_Page() {
                     <div className="HomePage_TopPart">
                         <h1>Your Gyms</h1>
                         <div className="HomePage_SearchBar">
-                            <input type="text" placeholder="Search here" />
+                            <input 
+                                type="text" 
+                                placeholder="Search here" 
+                                value={searchQuery} 
+                                onChange={(e) => setSearchQuery(e.target.value)}  // Update search query
+                            />
                             <button
                                 className="HomePage_AddGymButton"
                                 onClick={() => navigate('/AddGym_Page')}
@@ -97,10 +118,10 @@ function Home_Page() {
                     </div>
 
                     <div className="HomePage_GymAndBranches">
-                        {gyms.length === 0 ? (
-                            <p>No gyms added yet. Click "Add Gym" to add your first gym.</p>
+                        {filteredGyms.length === 0 ? (
+                            <p>No gyms found. Try another search or click "Add Gym" to add a gym.</p>
                         ) : (
-                            gyms.map((gym, index) => (
+                            filteredGyms.map((gym, index) => (
                                 <div key={index} className="HomePage_GymBox">
                                     <div className="HomePage_GymsTopPart">
                                         <span className="HomePage_GymName">{gym.gymName}</span>
@@ -131,7 +152,6 @@ function Home_Page() {
                             ))
                         )}
                     </div>
-
                 </div>
             </div>
         </div>

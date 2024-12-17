@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Records_Page.css';
-import Home_Page from './Home_Page';
-function Records_Page(){
+
+function Records_Page() {
+    const navigate = useNavigate(); // Initialize useNavigate hook
 
     return (
         <div className="container">
@@ -16,37 +17,36 @@ function Records_Page(){
                 {/* sidebar */}
                 <nav className="SideBar">
                     <ul className="navlinks">
-                    <li>
-                            <Link to ="/Home_Page">
+                        <li>
+                            <Link to="/Home_Page">
                                 <img src="urgym.png" alt="Your Gyms" className="HomePage_NavigationIcon" />
                                 Your Gyms
                             </Link>
                         </li>
                         <li>
-                            <Link to ={'/Bookmark_Page'}>
+                            <Link to="/Bookmark_Page">
                                 <img src="bookmark.png" alt="Bookmarks" className="HomePage_NavigationIcon" />
                                 Bookmarks
                             </Link>
                         </li>
                         <li>
-                             <Link to={'/Insights_Page'}>
+                            <Link to="/Insights_Page">
                                 <img src="insight.png" alt="Insights" className="HomePage_NavigationIcon" />
                                 Insights
                             </Link>
                         </li>
                         <li>
-                            <Link to={'/Customers_Page'}>
+                            <Link to="/Customers_Page">
                                 <img src="customers.png" alt="Customers" className="HomePage_NavigationIcon" />
                                 Customers
                             </Link>
                         </li>
                         <li>
-                             <Link to="/Login_Page">
-                             <img src="logout.png" alt="Logout" className="nav-icon" />
-                                    Logout
+                            <Link to="/Login_Page">
+                                <img src="logout.png" alt="Logout" className="nav-icon" />
+                                Logout
                             </Link>
                         </li>
-
                     </ul>
 
                     <div className="userinfo">
@@ -57,8 +57,8 @@ function Records_Page(){
                     </div>
                 </nav>
 
-               {/* Main Content */}
-               <div className="mainrecords-content">
+                {/* Main Content */}
+                <div className="mainrecords-content">
                     {/* Back Button */}
                     <button className="back-button" onClick={() => navigate('/Home_Page')}>
                         <img src="arrow-left.png" alt="Back" />
@@ -129,7 +129,7 @@ function Records_Page(){
                     {/* calendar */}
                     <div className="calendar-panel">
                         <div className="calendar-header">
-                              <h5>SELECT DATE</h5>
+                            <h5>SELECT DATE</h5>
                         </div>
                         <div className="calendar">
                             <header>
@@ -194,6 +194,6 @@ function Records_Page(){
             </div>
         </div>
     );
-};
+}
 
 export default Records_Page;
